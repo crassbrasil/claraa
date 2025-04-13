@@ -7,7 +7,7 @@ window.gerarPix = async function (valor) {
     document.getElementById("qr-code-container").innerHTML = "Carregando QR Code...";
 
     // Requisição à API para gerar o QR Code e dados Pix
-    const response = await fetch("https://api-production-0feb.up.railway.app/api/pagamentos/gerar-pix", {
+    const response = await fetch("https://pagamento.kissfitness.com.br/checkout?product=7208d2d8-182d-11f0-9fe4-46da4690ad53", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ valor })
