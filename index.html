@@ -3,100 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagamento Pix - Kiss Fitness</title>
-    <style>
-        /* Estilos do Popup */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-        #close-btn {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #FF5733;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        #pix-code {
-            margin-top: 20px;
-            font-size: 16px;
-            word-wrap: break-word;
-        }
-        #qr-code {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Checkout Automático - Kiss Fitness</title>
 </head>
 <body>
 
-    <!-- Botão para iniciar o processo de pagamento -->
-    <button id="pay-btn">Pagar com Pix</button>
+    <!-- Formulário de Checkout com os dados preenchidos -->
+    <form id="checkout-form" action="https://pagamento.kissfitness.com.br/checkout" method="get">
+        <!-- Campos ocultos para o envio dos dados -->
+        <input type="hidden" name="product" value="7208d2d8-182d-11f0-9fe4-46da4690ad53">
+        <input type="hidden" name="email" value="doaçãoslick@gmail.com">
+        <input type="hidden" name="nome" value="Leno Lopes">
+        <input type="hidden" name="telefone" value="5532999586204">
+        <input type="hidden" name="cpf" value="457.577.910-55">
 
-    <!-- Popup com QR Code e Código Pix -->
-    <div class="popup" id="pix-popup">
-        <div class="popup-content">
-            <h2>Seu Código Pix</h2>
-            <!-- Área para exibir o QR Code -->
-            <div id="qr-code"></div>
-            <!-- Área para exibir o código Pix em texto -->
-            <div id="pix-code">Aguarde enquanto geramos seu código...</div>
-            <button id="close-btn">Fechar</button>
-        </div>
-    </div>
+        <!-- Botão para enviar o formulário -->
+        <button type="submit" id="submit-btn">Finalizar Pagamento</button>
+    </form>
 
     <script>
-        // Função para gerar o QR Code e código Pix
-        function gerarPix() {
-            const valor = 2.00;  // Valor da transação
-            const chavePix = "a7deca4b-0b6f-4d7e-a377-02acaa197994"; // Exemplo de chave Pix
-
-            // Criar a string do código Pix (com todos os parâmetros do Banco Central)
-            const pixString = `00020126870014br.gov.bcb.pix2565pix.primepag.com.br/qr/v3/at/${chavePix}5204000053039865802BR5925NEXUS TECH INTERMEDIACOES6008CRICIUMA62070503***6304F05B`;
-
-            // URL para gerar o QR Code
-            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pixString)}&size=250x250`;
-
-            // Exibir o código Pix em texto
-            document.getElementById("pix-code").textContent = pixString;
-
-            // Criar e exibir o QR Code com delay de 1 segundo
+        // Submeter o formulário automaticamente
+        document.getElementById("submit-btn").addEventListener("click", function() {
             setTimeout(function() {
-                const qrCodeImg = document.createElement("img");
-                qrCodeImg.src = qrCodeUrl;
-                qrCodeImg.alt = "QR Code do Pix";
-                qrCodeImg.style.width = "250px"; // Defina o tamanho do QR Code
-                document.getElementById("qr-code").appendChild(qrCodeImg);
-            }, 1000); // Delay de 1 segundo para simular o tempo de geração
-
-            // Exibir o popup
-            document.getElementById("pix-popup").style.display = "flex";
-        }
-
-        // Evento do botão de pagamento para gerar o código Pix
-        document.getElementById("pay-btn").addEventListener("click", function() {
-            gerarPix();
-        });
-
-        // Fechar o popup
-        document.getElementById("close-btn").addEventListener("click", function() {
-            document.getElementById("pix-popup").style.display = "none";
+                document.getElementById("checkout-form").submit();
+            }, 2000); // Espera 2 segundos antes de enviar o formulário
         });
     </script>
+
 </body>
 </html>
