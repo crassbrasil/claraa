@@ -1,6 +1,6 @@
 // Chaves para acessar a API (substitua com suas chaves reais)
-const chavePublica = "SUA_CHAVE_PUBLICA";
-const chaveSecreta = "SUA_CHAVE_SECRETA";
+const chavePublica = "pk_live_FUF01RbBgi0V4BXctjUyLEcqFIDs3d";
+const chaveSecreta = "sk_live_n2DcGrRa4ZpxPmtf3QAHszDhCeT2iYj6J7rs6LwawK";
 
 // Função para gerar o Pix
 function gerarPix(valor) {
@@ -16,7 +16,7 @@ function gerarPix(valor) {
     };
 
     // Chamada para a API para gerar o Pix
-    fetch('https://api.seuprovedor.com/gerar-pix', { // Substitua pela URL correta da API
+    fetch('https://api.lunacheckout.com/stores/0195c2e7-2e42-715b-a58b-b8772879a089/gateways/183/postback', { // Substitua pela URL correta da API
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
