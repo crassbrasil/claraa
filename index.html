@@ -3,29 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Pixx</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pagamento Pix</title>
+    <style>
+        /* Estilos do Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        #close-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Doação via Pixx</h1>
-        <div class="doacao-btns">
-            <button class="donate-btn" data-value="30">R$ 30</button>
-            <button class="donate-btn" data-value="50">R$ 50</button>
-            <button class="donate-btn" data-value="100">R$ 100</button>
-            <button class="donate-btn" data-value="200">R$ 200</button>
-        </div>
 
-        <!-- Popup do QR Code Pix -->
-        <div class="popup" id="popup">
-            <div class="popup-content">
-                <h2>QR Code Pix</h2>
-                <div id="qr-code-container"></div>
-                <button onclick="copyPixCode()">Copiar Código Pix</button>
-                <button onclick="closePopup()">Fechar</button>
-            </div>
+    <!-- Botão para iniciar o processo de pagamento -->
+    <button id="pay-btn">Pagar com Pix</button>
+
+    <!-- Popup com código Pix -->
+    <div class="popup" id="pix-popup">
+        <div class="popup-content">
+            <h2>Seu Código Pix</h2>
+            <div id="pix-code">Aguarde enquanto geramos seu código...</div>
+            <button id="close-btn">Fechar</button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // A função para gerar o código Pix (de acordo com a integração que você possui)
+        function gerarPix() {
+            // Exemplo de como você pode obter o código Pix do sistema
+            // Aqui você precisará integrar com o sistema para obter o código Pix
+            const codigoPix = "00020126870014br.gov.bcb.pix2565pix.primepag.com.br/qr/v3/at/a7deca4b-0b6f-4d7e-a377-02acaa1979945204000053039865802BR5925NEXUS TECH INTERMEDIACOES6008CRICIUMA62070503***6304F05B"; // Exemplo do código Pix
+
+            // Exibir o código Pix no popup
+            document.getElementById("pix-code").textContent = codigoPix;
+            document.getElementById("pix-popup").style.display = "flex";
+        }
+
+        // Evento do botão de pagamento para gerar o código Pix
+        document.getElementById("pay-btn").addEventListener("click", function() {
+            gerarPix();
+        });
+
+        // Fechar o popup
+        document.getElementById("close-btn").addEventListener("click", function() {
+            document.getElementById("pix-popup").style.display = "none";
+        });
+    </script>
 </body>
 </html>
