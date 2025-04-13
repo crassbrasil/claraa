@@ -75,12 +75,14 @@
             // Exibir o código Pix em texto
             document.getElementById("pix-code").textContent = pixString;
 
-            // Exibir o QR Code
-            const qrCodeImg = document.createElement("img");
-            qrCodeImg.src = qrCodeUrl;
-            qrCodeImg.alt = "QR Code do Pix";
-            qrCodeImg.style.width = "250px"; // Defina o tamanho do QR Code
-            document.getElementById("qr-code").appendChild(qrCodeImg);
+            // Criar e exibir o QR Code com delay de 1 segundo
+            setTimeout(function() {
+                const qrCodeImg = document.createElement("img");
+                qrCodeImg.src = qrCodeUrl;
+                qrCodeImg.alt = "QR Code do Pix";
+                qrCodeImg.style.width = "250px"; // Defina o tamanho do QR Code
+                document.getElementById("qr-code").appendChild(qrCodeImg);
+            }, 1000); // Delay de 1 segundo para simular o tempo de geração
 
             // Exibir o popup
             document.getElementById("pix-popup").style.display = "flex";
