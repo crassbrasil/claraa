@@ -1,86 +1,35 @@
-// Função chamada ao clicar nos botões
-window.gerarPix = async function (valor) {
-  try {
-    // Mostra loading opcional
-    const popup = document.getElementById("popup");
-    popup.style.display = "block";
-    document.getElementById("qr-code-container").innerHTML = "Carregando QR Code...";
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doação Kiss Fitness</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Faça uma Doação para o Kiss Fitness</h1>
+    <p>Contribua com um valor para o nosso projeto</p>
 
-    // Requisição à API para gerar o QR Code e dados Pix
-    const response = await fetch("https://pagamento.kissfitness.com.br/checkout?product=7208d2d8-182d-11f0-9fe4-46da4690ad53", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ valor })
-    });
+    <div class="valores">
+      <button class="valor" onclick="gerarPix(2)">R$ 2,00</button>
+      <button class="valor" onclick="gerarPix(30)">R$ 30,00</button>
+      <button class="valor" onclick="gerarPix(50)">R$ 50,00</button>
+    </div>
 
-    const data = await response.json();
+    <div id="popup" class="popup" style="display: none;">
+      <div class="popup-content">
+        <span class="close" onclick="fecharPopup()">&times;</span>
+        <h3>QR Code da Doação</h3>
+        <div id="qr-code-container"></div>
+        <p>Chave Pix: <span id="chave-pix"></span></p>
+        <p>Valor: R$ <span id="valor-pix"></span></p>
+        <button id="copiar-pix" onclick="copiarPix()">Copiar Pix</button>
+      </div>
+    </div>
+  </div>
 
-    // Exibe QR Code, chave e valor no popup
-    document.getElementById("qr-code-container").innerHTML = `<img src="${data.qr_code}" alt="QR Code Pix" style="width: 200px; height: 200px;" />`;
-    document.getElementById("chave-pix").textContent = data.copia_cola;
-    document.getElementById("valor-pix").textContent = valor.toFixed(2).replace(".", ",");
-
-  } catch (err) {
-    console.error("Erro ao gerar Pix:", err);
-    alert("Erro ao gerar QR Code. Tente novamente.");
-    fecharPopup();
-  }
-};
-
-// Fecha o popup
-window.fecharPopup = function () {
-  document.getElementById("popup").style.display = "none";
-};
-
-// Copia a chave Pix
-window.copiarPix = function () {
-  const chave = document.getElementById("chave-pix").textContent;
-  navigator.clipboard.writeText(chave).then(() => {
-    alert("Chave Pix copiada com sucesso!");
-  });
-};
-async function gerarPix(valor) {
-  try {
-    const popup = document.getElementById("popup");
-    const qrContainer = document.getElementById("qr-code-container");
-    const spanChave = document.getElementById("chave-pix");
-    const spanValor = document.getElementById("valor-pix");
-
-    // Mostra o popup
-    popup.style.display = "flex";
-
-    // Reset conteúdo
-    qrContainer.innerHTML = "Carregando QR Code...";
-    spanChave.innerText = "";
-    spanValor.innerText = "";
-
-    // Chamada à API
-    const response = await fetch(`https://api-production-0feb.up.railway.app/pix?valor=${valor}`);
-    const data = await response.json();
-
-    // Exibe dados
-    qrContainer.innerHTML = `<img src="${data.qr_code_base64}" alt="QR Code Pix" width="220">`;
-    spanChave.innerText = data.chave;
-    spanValor.innerText = valor.toFixed(2);
-    
-    // Armazena para cópia
-    document.getElementById("copiar-pix").setAttribute("data-chave", data.chave);
-  } catch (error) {
-    alert("Erro ao gerar Pix. Tente novamente.");
-    console.error(error);
-    fecharPopup();
-  }
-}
-
-function fecharPopup() {
-  document.getElementById("popup").style.display = "none";
-}
-
-function copiarPix() {
-  const chave = document.getElementById("copiar-pix").getAttribute("data-chave");
-  navigator.clipboard.writeText(chave).then(() => {
-    alert("Chave Pix copiada!");
-  }).catch(err => {
-    alert("Erro ao copiar Pix.");
-  });
-}
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+</html>
