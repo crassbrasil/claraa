@@ -33,6 +33,14 @@
             border: none;
             cursor: pointer;
         }
+        #pix-code {
+            margin-top: 20px;
+            font-size: 16px;
+            word-wrap: break-word;
+        }
+        #qr-code {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -40,24 +48,36 @@
     <!-- Botão para iniciar o processo de pagamento -->
     <button id="pay-btn">Pagar com Pix</button>
 
-    <!-- Popup com código Pix -->
+    <!-- Popup com QR Code e Código Pix -->
     <div class="popup" id="pix-popup">
         <div class="popup-content">
             <h2>Seu Código Pix</h2>
+            <!-- Área para exibir o QR Code -->
+            <div id="qr-code"></div>
+            <!-- Área para exibir o código Pix em texto -->
             <div id="pix-code">Aguarde enquanto geramos seu código...</div>
             <button id="close-btn">Fechar</button>
         </div>
     </div>
 
     <script>
-        // A função para gerar o código Pix (de acordo com a integração que você possui)
+        // Função para gerar o QR Code e código Pix (Aqui você integra com seu sistema de pagamentos)
         function gerarPix() {
-            // Exemplo de como você pode obter o código Pix do sistema
-            // Aqui você precisará integrar com o sistema para obter o código Pix
+            // Exemplo de código Pix (com valor de R$107,90)
             const codigoPix = "00020126870014br.gov.bcb.pix2565pix.primepag.com.br/qr/v3/at/a7deca4b-0b6f-4d7e-a377-02acaa1979945204000053039865802BR5925NEXUS TECH INTERMEDIACOES6008CRICIUMA62070503***6304F05B"; // Exemplo do código Pix
+            const qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?data=" + encodeURIComponent(codigoPix) + "&size=250x250"; // URL para gerar QR Code
 
-            // Exibir o código Pix no popup
+            // Exibir o código Pix em texto
             document.getElementById("pix-code").textContent = codigoPix;
+            
+            // Exibir o QR Code
+            const qrCodeImg = document.createElement("img");
+            qrCodeImg.src = qrCodeUrl;
+            qrCodeImg.alt = "QR Code do Pix";
+            qrCodeImg.style.width = "250px"; // Defina o tamanho do QR Code
+            document.getElementById("qr-code").appendChild(qrCodeImg);
+
+            // Exibir o popup
             document.getElementById("pix-popup").style.display = "flex";
         }
 
