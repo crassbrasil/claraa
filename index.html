@@ -28,6 +28,26 @@
             }, 2000); // Espera 2 segundos antes de enviar o formulário
         });
     </script>
+    <script>
+    // Função para gerar o QR Code de Pix com o valor de R$2.00 (por exemplo)
+    function gerarQrCodePix(valor) {
+        const pixString = `00020126870014br.gov.bcb.pix2565pix.primepag.com.br/qr/v3/at/${valor}5204000053039865802BR5925NEXUS TECH INTERMEDIACOES6008CRICIUMA62070503***6304F05B`;
+        
+        // Gerar QR Code via API
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pixString)}&size=250x250`;
+
+        // Exibir o QR Code
+        const qrCodeDiv = document.createElement('div');
+        const qrCodeImage = document.createElement('img');
+        qrCodeImage.src = qrCodeUrl;
+        qrCodeDiv.appendChild(qrCodeImage);
+        document.body.appendChild(qrCodeDiv); // Adiciona o QR Code na página
+    }
+
+    // Chamar a função com o valor a ser gerado
+    gerarQrCodePix('2.00'); // Exemplo de valor
+</script>
+
 
 </body>
 </html>
