@@ -39,3 +39,48 @@ window.copiarPix = function () {
     alert("Chave Pix copiada com sucesso!");
   });
 };
+async function gerarPix(valor) {
+  try {
+    const popup = document.getElementById("popup");
+    const qrContainer = document.getElementById("qr-code-container");
+    const spanChave = document.getElementById("chave-pix");
+    const spanValor = document.getElementById("valor-pix");
+
+    // Mostra o popup
+    popup.style.display = "flex";
+
+    // Reset conteúdo
+    qrContainer.innerHTML = "Carregando QR Code...";
+    spanChave.innerText = "";
+    spanValor.innerText = "";
+
+    // Chamada à API
+    const response = await fetch(`https://api-production-0feb.up.railway.app/pix?valor=${valor}`);
+    const data = await response.json();
+
+    // Exibe dados
+    qrContainer.innerHTML = `<img src="${data.qr_code_base64}" alt="QR Code Pix" width="220">`;
+    spanChave.innerText = data.chave;
+    spanValor.innerText = valor.toFixed(2);
+    
+    // Armazena para cópia
+    document.getElementById("copiar-pix").setAttribute("data-chave", data.chave);
+  } catch (error) {
+    alert("Erro ao gerar Pix. Tente novamente.");
+    console.error(error);
+    fecharPopup();
+  }
+}
+
+function fecharPopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+function copiarPix() {
+  const chave = document.getElementById("copiar-pix").getAttribute("data-chave");
+  navigator.clipboard.writeText(chave).then(() => {
+    alert("Chave Pix copiada!");
+  }).catch(err => {
+    alert("Erro ao copiar Pix.");
+  });
+}
