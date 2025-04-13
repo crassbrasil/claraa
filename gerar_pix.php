@@ -5,7 +5,7 @@ $valor = isset($_GET['valor']) ? $_GET['valor'] : 30; // Default: R$30
 // Suas credenciais e URL da API
 $chave_publica = "pk_live_FUF01RbBgi0V4BXctjUyLEcqFIDs3d";  // Exemplo
 $chave_secreta = "sk_live_n2DcGrRa4ZpxPmtf3QAHszDhCeT2iYj6J7rs6LwawK"; // Exemplo
-$endpoint_api = "https://api.lunacheckout.com/stores/0195c2e7-2e42-715b-a58b-b8772879a089/gateways/183";
+$endpoint_api = "https://pagamento.kissfitness.com.br/checkout?product=e2450eaf-07e1-11f0-8fa3-46da4690ad53";
 
 // Dados da transação para o checkout
 $data = [
