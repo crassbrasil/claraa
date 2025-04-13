@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+      <script>
+  window.pixelId = "67f972487e2ee6b3e2cd3e05";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favi.webp" type="image/png" />
+    <title>Ajude Ana Laura</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/glide.core.min.css" />
+    <link rel="stylesheet" href="css/glide.theme.min.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <script src="js/qrcode.min.js"></script>
+  </head>
+
+</script>
+
+<script>
+   (function () {
+        function redirectBack() {
+          window.location.href = "./upback/index.html";
+        }
+ 
+        // Salva a URL inicial
+        const initialPage = location.pathname;
+        
+        // Adiciona um estado ao histórico na primeira carga
+        history.pushState({page: 1}, null, location.href);
+        
+        // Só redireciona quando tentar voltar à página anterior
+        window.addEventListener("popstate", function(event) {
+          // Permite navegação interna (hash links)
+          if (location.pathname === initialPage && location.hash) {
+            return;
+          }
+          // Só redireciona se tentar sair da página inicial
+          if (location.pathname === initialPage && !event.state) {
+            redirectBack();
+          }
+        });
+      })();
+</script>
+
+<script>
+  function getCurrentParams() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const result = {};
+    paramsToKeep.forEach(param => {
+      const value = urlSearchParams.get(param);
+      if (value) result[param] = value;
+    });
+    return result;
+  }
+
+  function buildQueryString(params) {
+    return Object.entries(params)
+      .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
+      .join("&");
+  }
+
+  function updateInternalLinks() {
+    const links = document.querySelactorAll("a[href]");
+    const currentParams = getCurrentParams();
+    if (Object.keys(currentParams).length === 0) return;
+
+    links.forEach(link => {
+      const href = link.getAttribute("href");
+
+      // Só aplica em links relativos (ou seja, dentro do site)
+      if (href.startsWith("/") || href.startsWith(window.location.origin)) {
+        const url = new URL(href, window.location.origin);
+        const linkParams = new URLSearchParams(url.search);
+
+        // Adiciona os parâmetros desejados
+        for (const key in currentParams) {
+          linkParams.set(key, currentParams[key]);
+        }
+
+        url.search = linkParams.toString();
+        link.setAttribute("href", url.pathname + url.search);
+      }
+    });
+  }
+
+  // Quando a página carregar, atualiza os links
+  document.addEventListener("DOMContentLoaded", updateInternalLinks);
+</script>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a>
+            <img src="images/ajudelogo.png" />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="post">
+      <h3>
+        💔 Grave doença auto-imune pegou a nossa pequena. Ajude a Ana Laura.
+      </h3>
+      <img src="images/mano1.png" />
+      <div class="image-container">
+        <div class="likes-container">
+          <img src="images/boll.png" alt="Corações" />
+          <!-- Mini Imagem que você carregou -->
+          <span>117 corações recebidos ❤️</span>
+        </div>
+      </div>
+      <a href="#button-section" class="btn-anchor">
+        <button class="post-button3">DOAR AGORA</button>
+      </a>
+      <p><strong>Mesmo sozinhas estamos batalhando para a vida digna!</strong></p>
+
+      <p>
+        A Ana é uma criança muito especial. Ela nasceu paraplégica e precisa de cuidados constantes. Desde o nascimento, sua vida tem sido uma batalha diária… E mesmo assim, ela é pura luz e alegria.. <strong>Infelizmente, o pai a abandonou, e minha filha precisou abrir mão de tudo para cuidar da Ana em tempo integral. Como também sou sozinha, elas vieram morar comigo na roça, em uma área rural de difícil acesso, longe da cidade — e longe da ajuda.</strong>  Nosso dia a dia não é fácil. Eu saio cedo para trabalhar como posso, fazendo faxinas e pequenos serviços na região. Faço das tripas, coração para garantir o básico… Mas o que ganho mal dá pra comida e remédios.
+
+Não temos carro, e o transporte público quase não passa por aqui. Cada ida ao médico é uma luta — e muitas vezes, é simplesmente impossível.</strong>.
+      </p>
+
+      <p>
+        <strong>A Ana precisa de uma cadeira de rodas melhor, fraldas, roupas especiais, além de um ambiente mais adaptado às suas necessidades.
+Mas o que mais machuca é ver o quanto ela precisa… e não poder oferecer.
+
+Por isso, com toda humildade, venho pedir sua ajuda.</strong>.
+      </p>
+
+      <p>
+        Qualquer valor pode fazer uma grande diferença na nossa vida e no bem-estar da Ana. E se você não puder doar, apenas compartilhar esta campanha já é um gesto de amor.
+
+      </p>
+
+      <p>
+        Hoje estamos vivendo uma situação de desespero. Estou desempregada, com dívidas acumuladas, aluguel atrasado e muitas vezes sem dinheiro nem pra comida. As necessidades básicas da Aninha — como fraldas, itens de higiene, alimentação adequada, medicamentos e transporte para consultas — muitas vezes simplesmente não cabem no que recebemos do governo.</strong>.
+      </p>
+
+      <p>
+        "<strong
+          >Tenho tentado sobreviver com pequenos trabalhos como caricaturista, mas é muito pouco diante de tudo o que precisamos.</strong
+        >"
+      </p>
+
+      <p>
+        São essas perguntas que me fazem
+        <strong>chorar escondida no banheiro</strong> toda noite.
+      </p>
+
+      <p>
+        Já pensei em desistir…
+        <strong>a tristeza e a ansiedade têm sido companheiras constantes. Mas quando olho pra minha familia e nétinha, lembro o porquê de estar aqui. ela é minha motivação. Meu propósito. Eu nunca vou abandoná-las.</strong>.
+      </p>
+
+      <p>
+        Ser a matriarca não é fácil. Mas é o maior presente que já recebi na vida. A Aninha me ensina sobre amor todos os dias — mesmo sem falar uma palavra.
+      </p>
+
+      <p>
+        Mas a verdade é que... <strong>a gente chegou num ponto crítico.</strong>, Eu estou desempregada. As dívidas só aumentam. Às vezes não temos nem o que comer. E as necessidades básicas da Aninha — fraldas, leite especial, medicação, produtos de higiene — simplesmente não cabem no pouco que a gente recebe do governo..
+      </p>
+
+      <p>
+        Tento conseguir algum dinheiro com faxinas, fazendo roça e lavoura. Mas é muito, muito pouco.
+      </p>
+
+      <p>
+        Mas aí eu olho pro Ana Laura... e lembro porque estou aqui.
+
+ela depende de mim. E eu prometi a mim mesmo que, enquanto eu estiver vivo, ela nunca vai ser abandonada. Nunca.
+      </p>
+
+      <p>
+        Já pensei em desistir várias vezes. Às vezes a tristeza vem com tanta força que eu me pergunto se vou aguentar.
+
+Mas aí eu olho pro Ana Laura... e lembro porque estou aqui.
+
+Ela depende de mim. E eu prometi a mim mesmo que, enquanto eu estiver vivo, ela nunca vai ser abandonada. Nunca.
+      </p>
+      <img src="images/laudo.webp" style="width: 90%; height: auto" />
+    
+      <p>
+        É a mesma <strong>tecnologia</strong> usada por
+        <strong>cirurgiões</strong> pra operar à distância, adaptada para
+        devolver a <strong>independência</strong> a crianças como o Ana Laura.
+      </p>
+      <img src="images/mano2.png" style="width: 90%; height: auto" />
+      <p>Se você está lendo isso agora, eu te peço com o coração aberto: nos ajude.
+
+Assista nosso vídeo. Veja com seus próprios olhos quem é o Ana Laura, quem somos nós.
+
+E se puder doar qualquer valor, saiba que estará ajudando dois irmãos a continuar lutando juntos — com dignidade, com carinho, com esperança.
+
+Você pode ser a diferença entre a dor e o alívio. Entre o desespero e a esperança.
+      </p>
+      <a href="#button-section" class="btn-anchor">
+        <button class="post-button3">DOAR AGORA</button>
+      </a>
+      <p><strong>Você receberá:</strong></p>
+
+      <p><strong>● Atualizações semanais</strong> da nossa jornada</p>
+      <p><strong>● Vídeo do primeiro abraço</strong> dela com a prótese</p>
+      <p><strong>● Seu nome na nossa lista de anjos</strong> (se desejar)</p>
+
+      <p>
+        <strong>Compartilhe nossa história</strong>. Cada compartilhamento é uma
+        <strong>nova chance</strong> de devolver a infância á minha Neta.
+      </p>
+
+      <p><strong>Que Deus abençoe você e a sua família</strong>.</p>
+
+      <p><strong>Att: Sandra, Vó da Ana Laura</strong>.</p>
+
+      <div id="button-section">
+        <div class="progress-content">
+          <div class="progress-text">
+            <h4>Arrecadado</h4>
+            <div class="progress-values">
+              <p>R$ 23.450,41</p>
+              <p>R$ 87.000,00</p>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 27%">
+              <strong>27%</strong>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="text-align: center;">Clique no valor <br> que deseja doar</h4>
+        <p class="donation-multiplier"><strong>✨ DOAÇÃO DUPLICADA! ✨</strong> Doações a partir de R$50 serão multiplicadas por 2 pelos nossos patrocinadores e grupo de empresários que apoiam nossa campanha! Sua ajuda vale o dobro até 25/04. Não perca essa oportunidade de maximizar seu impacto na vida do Ana Laura!</p>
+        <div class="buttons-section">
+          <div class="buttons-section1">
+            <a href="#">
+              <button class="post-button2">R$ 30</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2" style="border: 2px solid #ffcc00; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);">R$ 50</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 80</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 150</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 250</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 350</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 450</button>
+            </a>
+            <a href="#">
+              <button class="post-button2">R$ 600</button>
+            </a>
+            <a href="#">
+              <button class="post-button2">R$ 900</button>
+            </a>
+          </div>
+          <div class="buttons-section1">
+            <a href="#">
+              <button class="post-button2">R$ 40</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 70</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 100</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 200</button>
+            </a>
+            <a href="#">
+              <button class="post-button2">R$ 300</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 400</button>
+            </a>
+
+            <a href="#">
+              <button class="post-button2">R$ 500</button>
+            </a>
+            <a href="#">
+              <button class="post-button2">R$ 700</button>
+            </a>
+            <a href="#">
+              <button class="post-button2">R$ 1000</button>
+            </a>
+          </div>
+        </div>
+          <div class="sc-jXbUNg gNPJrz">
+            <div class="sc-jXbUNg dHwLb">
+              <div class="sc-jXbUNg jbBvcf"></div>
+              <div class="sc-jXbUNg dTrGCo sc-gRtvSG fpURXW"></div>
+            </div>
+          </div>
+
+          <div class="button-pix">
+            <div class="texto" id="1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-container">
+          <div class="footer-section logo-section">
+            <a>
+              <img src="images/ajudelogo.png" />
+            </a>
+          </div>
+
+          <div class="footer-bottom">
+            <p>2025 - Todos direitos reservados</p>
+          </div>
+        </div>
+      </footer>
+
+      <script data-cfasync="false" src="js/email-decode.min.js"></script>
+      <script src="js/script.js"></script>
+      <script src="js/pix.js"></script>
+  </body>
+</html>
