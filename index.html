@@ -1,137 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finalizar Compra</title>
-    <style>
-        /* Estilos para o Popup */
-        #qrCodePopup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        #qrCodePopup .popup-content {
-            background-color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-        }
-        .qr-code-img {
-            margin-bottom: 20px;
-        }
-        .copy-btn {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .copy-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    <title>Doação Kiss Fitness</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Botão para Finalizar Compra -->
-    <button id="finalizar-compra-btn">Finalizar Compra</button>
-
-    <!-- Popup para mostrar QR Code e chave Pix -->
-    <div id="qrCodePopup">
-        <div class="popup-content">
-            <h3>QR Code do Pix</h3>
-            <!-- Exibe o QR Code -->
-            <div class="qr-code-img">
-                <img id="qrCode" src="" alt="QR Code" width="250" height="250">
+    <div class="container">
+        <h1>Faça uma Doação para o Kiss Fitness</h1>
+        <p>Contribua com um valor para o nosso projeto</p>
+        
+        <div class="valores">
+            <button class="valor" onclick="gerarPix(2)">R$ 2,00</button>
+            <button class="valor" onclick="gerarPix(30)">R$ 30,00</button>
+            <button class="valor" onclick="gerarPix(50)">R$ 50,00</button>
+            <!-- Adicione mais valores aqui se necessário -->
+        </div>
+        
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="fecharPopup()">&times;</span>
+                <h3>QR Code da Doação</h3>
+                <div id="qr-code-container">
+                    <!-- O QR Code será gerado aqui -->
+                </div>
+                <p>Chave Pix: <span id="chave-pix"></span></p>
+                <p>Valor: R$ <span id="valor-pix"></span></p>
+                <button id="copiar-pix" onclick="copiarPix()">Copiar Pix</button>
             </div>
-            <!-- Chave Pix para Copiar -->
-            <textarea id="pixChave" rows="2" style="width: 100%;"></textarea>
-            <br><br>
-            <button class="copy-btn" onclick="copiarChave()">Copiar Chave</button>
-            <br><br>
-            <button class="copy-btn" onclick="fecharPopup()">Fechar</button>
         </div>
     </div>
 
-    <script>
-        // Função para chamar a API de pagamento e gerar o QR Code Pix
-        function gerarQrCodePix(valor) {
-            const chavePublica = "pk_live_FUF01RbBgi0V4BXctjUyLEcqFIDs3d"; // Substitua com sua chave pública real
-            const chaveSecreta = "sk_live_n2DcGrRa4ZpxPmtf3QAHszDhCeT2iYj6J7rs6LwawK"; // Substitua com sua chave secreta real
-
-            const apiUrl = "https://api.lunacheckout.com/stores/0195c2e7-2e42-715b-a58b-b8772879a089/gateways/183/postback"; // Substitua com a URL da sua API
-
-            // Dados para enviar para a API
-            const data = {
-                valor: vlor,
-                chave_publica: chavepublica,
-                chave_secreta: chavesecreta,
-                descricao: "Doação para Kiss Fitness", // Descrição da transação
-            };
-
-            // Requisição para a API
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Verifica se a API retornou o QR Code e a chave Pix
-                if (data.status === "success") {
-                    // Atualiza o QR Code na página
-                    document.getElementById("qrCode").src = data.qr_code_url;
-
-                    // Preenche a chave Pix para copiar
-                    document.getElementById("pixChave").value = data.pix_chave;
-
-                    // Exibe o popup
-                    document.getElementById("qrCodePopup").style.display = "flex";
-                } else {
-                    alert("Erro ao gerar o Pix. Tente novamente.");
-                }
-            })
-            .catch(error => {
-                console.error("Erro na requisição à API:", error);
-            });
-        }
-
-        // Função para exibir o Popup
-        function exibirPopup() {
-            // Gera o QR Code para o valor da doação (por exemplo, R$2.00)
-            gerarQrCodePix('2.00');
-        }
-
-        // Função para fechar o Popup
-        function fecharPopup() {
-            document.getElementById("qrCodePopup").style.display = "none";
-        }
-
-        // Função para copiar a chave Pix
-        function copiarChave() {
-            const chavePix = document.getElementById("pixChave");
-            chavePix.select();
-            chavePix.setSelectionRange(0, 99999); // Para dispositivos móveis
-
-            document.execCommand("copy"); // Copiar para a área de transferência
-            alert("Chave Pix copiada com sucesso!");
-        }
-
-        // Adiciona o evento ao botão "Finalizar Compra"
-        document.getElementById("finalizar-compra-btn").addEventListener("click", function() {
-            exibirPopup(); // Exibe o popup com QR Code
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
